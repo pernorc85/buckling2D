@@ -1,4 +1,4 @@
-function y4=F(y1,y2,y3,R,r,n,g1,g2)
+function y4=F(y1,y2,y3,R,r,mu,n,g1,g2,rhs)
 %%%%%%%%%this is from Moulton's paper, if no anisotropic part, this is
 %%%%%%%%%right, since every term is multiplied by r^2*R^2;
 %C0 = (n^2-1)*(2*R^2*r^2-R^4);
@@ -33,9 +33,9 @@ A2112 = 0;          A2112_p = 0;
 A2211 = 0;          A2211_p = 0;
 A2222 = alpha^2;    A2222_p = FF;
 
-C0 = (n^2-1)*(r*A1212_p+A1212);
-C1 = (r*A1212_p-(n^2-1)*A1212 + n^2*(2*A2112+2*A2211-A2222-A1111))*r;
-C2 = (r*A1212_p+4*A1212)*r^2;
-C3 = A1212*r^3;
+C0 = mu*(n^2-1)*(r*A1212_p+A1212);
+C1 = mu*(r*A1212_p-(n^2-1)*A1212 + n^2*(2*A2112+2*A2211-A2222-A1111))*r;
+C2 = mu*(r*A1212_p+4*A1212)*r^2;
+C3 = mu*A1212*r^3;
 
-y4 = - (C2 * y3 + C1 * y2 + C0 * y1)/C3;
+y4 = (rhs- (C2 * y3 + C1 * y2 + C0 * y1))/C3;
