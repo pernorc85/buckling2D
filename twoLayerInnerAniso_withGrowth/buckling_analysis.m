@@ -79,7 +79,7 @@ while kl<ku && kl+epsilon<ku
     Pnormal = bc1_aniso(yb1(1),yb1(2),yb1(3),yb1(4),B,b,n,mu_i,k1,k2,gamma,g1_i,g2_i)/b;%previously it was /B^2/b^3
     Pshear  = mu_i*bc2(yb1(1),yb1(2),yb1(3),yb1(4),B,b,n);
     ybb1(3) = (Pshear/mu_o - (b*ybb1(2)+(n^2-1)*ybb1(1)))/b^2;
-    ybb1(4) = Pnormal/g2_o^2/B^2 + y4(ybb1(1),ybb1(2),ybb1(3),B,b,n,g1_o,g2_o);
+    ybb1(4) = y4(ybb1(1),ybb1(2),ybb1(3),B,b,mu_o,n,g1_o,g2_o,Pnormal*b);
     ybb1(5) = yb1(5);
     [rr,yy] = ode45(@(r,y) yp(r,y,B,b,mu_o,n,g1_o,g2_o), [b,c], ybb1);
     subplot(2,2,2);
@@ -98,7 +98,7 @@ while kl<ku && kl+epsilon<ku
     Pnormal = bc1_aniso(yb2(1),yb2(2),yb2(3),yb2(4),B,b,n,mu_i,k1,k2,gamma,g1_i,g2_i)/b;%previously it was /B^2/b^2
     Pshear  = mu_i*bc2(yb2(1),yb2(2),yb2(3),yb2(4),B,b,n);
     ybb2(3) = (Pshear/mu_o - (b*ybb2(2)+(n^2-1)*ybb2(1)))/b^2;
-    ybb2(4) = Pnormal/g2_o^2/B^2 + y4(ybb2(1),ybb2(2),ybb2(3),B,b,n,g1_o,g2_o);
+    ybb2(4) = y4(ybb2(1),ybb2(2),ybb2(3),B,b,mu_o,n,g1_o,g2_o,Pnormal*b);
     ybb2(5) = 0;
     [rr,yy] = ode45(@(r,y) yp(r,y,B,b,mu_o,n,g1_o,g2_o), [b,c], ybb2);
     subplot(2,2,4);
