@@ -1,5 +1,7 @@
 # bucklingWithGrowth
 
+Copyright (C) 2013 - 2017, Le Yang. All rights reserved.
+
 matlab program to calculate growth induced buckling mode based on material property.
 
 One-layer problem has been validated against isotropic counterpart in work of Derek.E.Moulton(2011).
